@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okul Seçim Formu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Okul Seçim Formu</h2>
+        
+        <!-- Seçim Grubu -->
+        <div class="secim-container">
+            <!-- İlçe Seçimi -->
+            <div class="form-group">
+                <label for="ilce">İlçe Seçiniz:</label>
+                <select id="ilce" class="ilce-select" onchange="ilceSecildi()">
+                    <option value="">Seçiniz</option>
+                    <option value="anamur">Anamur</option>
+                    <option value="bozyazi">Bozyazı</option>
+                </select>
+            </div>
+
+            <!-- Okul Seçimi -->
+            <div class="form-group">
+                <label for="okullar">Okul Seçiniz:</label>
+                <select id="okullar" onchange="okulSecildi()">
+                    <option value="">Önce ilçe seçiniz</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Seçilen Okul Bilgileri -->
+        <div class="sonuc-container">
+            <div class="sonuc-grup">
+                <div id="sonuc1"></div>
+                <button onclick="kopyala('sonuc1')" class="kopyala-btn">Kopyala</button>
+            </div>
+            <div class="sonuc-grup">
+                <div id="sonuc2"></div>
+                <button onclick="kopyala('sonuc2')" class="kopyala-btn">Kopyala</button>
+            </div>
+            <div class="sonuc-grup">
+                <div id="sonuc3"></div>
+                <button onclick="kopyala('sonuc3')" class="kopyala-btn">Kopyala</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
