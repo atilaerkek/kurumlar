@@ -14,9 +14,9 @@
         <div class="secim-container">
             <!-- İlçe Seçimi -->
             <div class="form-group">
-                <label for="ilce">İlçe Seçiniz:</label>
+                <label for="ilce">İlçe:</label>
                 <select id="ilce" class="ilce-select" onchange="ilceSecildi()">
-                    <option value="">Seçiniz</option>
+                    <option value="">İlçe Seçiniz</option>
                     <option value="anamur">Anamur</option>
                     <option value="bozyazi">Bozyazı</option>
                 </select>
@@ -24,9 +24,9 @@
 
             <!-- Okul Seçimi -->
             <div class="form-group">
-                <label for="okullar">Okul Seçiniz:</label>
-                <select id="okullar" onchange="okulSecildi()">
-                    <option value="">Önce ilçe seçiniz</option>
+                <label for="okullar">Okul:</label>
+                <select id="okullar" class="okul-select" onchange="okulSecildi()">
+                    <option value="">Okul Seçiniz</option>
                 </select>
             </div>
         </div>
@@ -49,4 +49,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html> 
+</html>

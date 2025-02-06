@@ -1,122 +1,164 @@
 .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 30px;
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 20px;
     font-family: Arial, sans-serif;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .secim-container {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
 }
 
 .form-group {
-    flex: initial;
-}
-
-.form-group:last-child {
     flex: 1;
+    min-width: 180px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
 }
 
-label {
-    display: block;
-    margin-bottom: 8px;
+.ilce-select {
+    width: 120px !important;
+}
+
+.okul-select {
+    width: 400px !important;
+}
+
+label, .label {
+    color: #2c3e50;
     font-weight: 600;
-    color: #34495e;
+    margin-right: 8px;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: all 0.2s ease;
+    height: 32px;
+    cursor: pointer;
+}
+
+select:hover {
+    border-color: #adb5bd;
 }
 
 select:focus {
-    border-color: #3498db;
     outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.value {
+    color: #333;
+    font-size: 14px;
 }
 
 .sonuc-container {
-    margin-top: 20px;
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
 }
 
 .sonuc-grup {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    gap: 10px;
+    margin-bottom: 1px;
+    padding: 4px 10px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+    min-height: 20px;
 }
 
 .sonuc-grup div {
     flex-grow: 1;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #f8f9fa;
-    min-height: 20px;
-    transition: all 0.3s ease;
-}
-
-.sonuc-grup div:hover {
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 8px;
+    line-height: 1.2;
 }
 
 .kopyala-btn {
-    padding: 5px 10px;
+    padding: 4px 12px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    display: none;
-}
-
-.kopyala-btn.visible {
-    display: block;
+    font-size: 14px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    margin-left: 4px;
 }
 
 .kopyala-btn:hover {
     background-color: #45a049;
+    transform: translateY(-1px);
 }
 
-.label {
-    color: #7f8c8d;
+.okul-listesi {
+    max-height: 350px;
+    overflow-y: auto;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    margin-top: 8px;
+    background-color: white;
+}
+
+.okul-listesi-item {
+    padding: 6px 10px;
+    border-bottom: 1px solid #f0f0f0;
     font-size: 14px;
+    line-height: 1.2;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
 }
 
-.value {
-    color: #2c3e50;
-    font-weight: 600;
+.okul-listesi-item:last-child {
+    border-bottom: none;
 }
 
-.ilce-select {
-    width: auto;
-    min-width: 120px;
+.okul-listesi-item:hover {
+    background-color: #f8f9fa;
 }
 
 h2 {
-    color: #2c3e50;
     text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
+    color: #2c3e50;
+    margin: 0 0 25px 0;
+    padding-bottom: 12px;
     border-bottom: 2px solid #3498db;
-    font-size: 28px;
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 body {
     background-color: #f0f2f5;
     margin: 0;
-    padding: 20px;
-} 
+    padding: 15px;
+    min-height: 100vh;
+}

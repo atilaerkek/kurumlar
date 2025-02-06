@@ -1,0 +1,99 @@
+ANAMUR
+--------------------------------------------------------
+KURUM_KODU	KURUM_ADI
+264499	Anamur Anadolu Lisesi
+750857	Anamur Cumhuriyet Anadolu Lisesi
+758234	Şehit İbrahim Armut Fen Lisesi
+764926	Anamur Şehit Yüksel Alçın Anadolu İmam Hatip Lisesi
+156923	Anamur Halk Eğitimi Merkezi
+214052	Rüştü Kazım Yücelen Mesleki Eğitim Merkezi
+966349	Anamur Rehberlik ve Araştırma Merkezi
+766166	Anamur Bilim ve Sanat Merkezi
+954384	Anamur İsmihan Çerçi Anaokulu
+975011	Akdeniz İlkokulu
+763105	Anamur Kıbrıs İlkokulu
+762360	Anamur 15 Temmuz Milli İrade İlkokulu
+700566	Anıtlı Alanoba İlkokulu
+700572	Bozdoğan Mamure İlkokulu
+700832	Çarıklar Efeler İlkokulu
+700823	Çeltikçi İlkokulu
+720951	Demirören Alan İlkokulu
+700584	Evciler Nihat Sarı İlkokulu
+974989	Fatih İlkokulu
+975005	Gercebahşiş Yenimahalle İlkokulu
+975000	Güneybahşiş İlkokulu
+700815	Güngören İlkokulu
+700868	Kalınören İlkokulu
+700728	Karalarbahşiş İlkokulu
+700799	Köprübaşı İlkokulu
+700589	Malaklar İlkokulu
+700841	Ortaköy Hidayet Sinanoğlu İlkokulu
+700576	Ovabaşı İlkokulu
+700376	Rüştü Kazım Yücelen İlkokulu
+772751	Sugözü İlkokulu
+765625	Şehit Hasan Kuş İlkokulu
+974978	Şükrü Köymen İlkokulu
+752517	Zehra Marulyalı İlkokulu
+974980	Anamur Ortaokulu
+700564	Anıtlı Alanoba Ortaokulu
+700568	Bozdoğan Mamure Ortaokulu
+700820	Çeltikçi Ortaokulu
+700816	Demirören Alan Ortaokulu
+700578	Evciler Nihat Sarı Ortaokulu
+700590	Gercebahşiş Sadet Tuna Ortaokulu
+700801	Güngören Ortaokulu
+700864	Kalınören Ortaokulu
+700597	Karalarbahşiş Ortaokulu
+700797	Köprübaşı Ortaokulu
+700586	Malaklar Ortaokulu
+700837	Ortaköy Hidayet Sinanoğlu Ortaokulu
+700574	Ovabaşı Ortaokulu
+700396	Rüştü Kazım Yücelen Ortaokulu
+765636	Şehit Şükrü Ünlü Ortaokulu
+974988	Vakıfbank Atatürk Ortaokulu
+974986	Cengiz Topel İmam Hatip Ortaokulu
+748386	Zehra Marulyalı Yatılı Bölge Ortaokulu
+963203	Abdulkadir Perşembe Vakfı Mesleki ve Teknik Anadolu Lisesi
+156888	Anamur Ticaret Mesleki ve Teknik Anadolu Lisesi
+156864	Gazi Mesleki ve Teknik Anadolu Lisesi
+340376	Valide Sultan Kız Mesleki ve Teknik Anadolu Lisesi
+
+BOZYAZI
+--------------------------------------------------------
+KURUM_KODU	KURUM_ADI
+323504	Bozyazı Anadolu Lisesi
+751337	Bozyazı Durmuş Tufan Anadolu İmam Hatip Lisesi
+214279	Bozyazı Halk Eğitimi Merkezi
+971705	Bozyazı İlk Adım Anaokulu
+772758	Kökobası Anaokulu
+743634	Beyreli İlkokulu
+708242	Bozyazı İlkokulu
+721261	Cumhuriyet İlkokulu
+853265	Çopurlu İlkokulu
+708538	Hüseyin Hüsnü Tekışık İlkokulu
+737923	Kaledibi Şehit Turhan Kılıç İlkokulu
+708531	Kökobası İlkokulu
+721274	Kötekler İlkokulu
+708713	Lütfiye Keskin İlkokulu
+708706	Tekeli İlkokulu
+713685	Tekmen İlkokulu
+713669	Vali Çetin Birmek İlkokulu
+724230	100. Yıl Örtülü İlkokulu
+708429	Atatürk Ortaokulu
+708437	Bozyazı Ortaokulu
+708700	Gazi Ortaokulu
+708525	Kökobası Ortaokulu
+708710	Lütfiye Keskin Ortaokulu
+708416	Şehit Murat Namdar Ortaokulu
+713661	Şehit Sedat Yabalak Ortaokulu
+708702	Tekeli Ortaokulu
+713680	Tekmen Ortaokulu
+763592	Bozyazı Mesleki ve Teknik Anadolu Lisesi
+751442	Bozyazı 15 Temmuz Millî İrade Mesleki ve Teknik Anadolu Lisesi
+
+Bu Anamur, Bozyazı İlçelerine ait Kurum kodu, Kurum Adı yazılı listeyi
+1.İlçe olarak seçim yapılmalı
+2.Seçim yapılan ilçeye ait Kurum adları bir açılır listede gelmeli
+3.Seçimi yapılan kurum adı seçilince alta 3 satır şeklinde kurum kodu: , kurum adı: , kurum kodu bir boşluk kurum adı yan yana gelecek şekilde gelmelidir.
+4.Bu 3 satırın karşısında da kopyala butonu olmalıdır.
+5.
