@@ -17,11 +17,13 @@
     background: #f8f9fa;
     border-radius: 6px;
     border: 1px solid #e9ecef;
+    width: calc(100% - 30px); /* Genişlik ayarlandı */
+    box-sizing: border-box; /* Kenar boşlukları ve kenar kalınlığı dahil edildi */
 }
 
 .form-group {
-    flex: 1;
-    min-width: 180px;
+    flex: 1 1 auto; /* Elemanların esnekliğini artırdım */
+    min-width: 150px; /* Minimum genişlik eklendi */
     margin-bottom: 8px;
     display: flex;
     align-items: center;
