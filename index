@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurum Bilgi Paneli | Atila YEĞİTEK</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --success: #16a34a;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
 
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: #1e293b;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--primary);
+        }
+
+        .result-card {
+            margin-top: 24px;
+            padding: 20px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            display: none; /* Seçim yapılana kadar gizli */
+        }
+
+        .result-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .result-content {
+            flex-grow: 1;
+            font-family: monospace;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .download-footer-btn {
+            width: 100%;
+            background: #1e293b;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Kurum Bilgi Rehberi</h1>
+    </div>
+
+    <!-- 1. İlçe Seçimi -->
+    <div class="form-group">
+        <label>İlçe Seçin</label>
+        <select id="districtSelect" onchange="updateSchools()">
+            <option value="">İlçe Seçiniz...</option>
+            <option value="ANAMUR">ANAMUR</option>
+            <option value="BOZYAZI">BOZYAZI</option>
+        </select>
+    </div>
+
+    <!-- 2. Kurum Seçimi -->
+    <div class="form-group">
+        <label>Kurum Seçin</label>
+        <select id="schoolSelect" onchange="showDetails()" disabled>
+            <option value="">Önce İlçe Seçiniz...</option>
+        </select>
+    </div>
+
+    <!-- 3. Sonuç ve Kopyalama Alanı -->
+    <div id="resultCard" class="result-card">
+        <label>Kurum Bilgileri (Kopyalamak için butona basın)</label>
+        
+        <div class="result-row">
+            <div class="result-content" id="row1"></div>
+            <button class="copy-btn" onclick="copyText('row1', this)">Kopyala</button>
+        </div>
+
+        <div class="result-row">
+            <div class="result-content" id="row2"></div>
+            <button class="copy-btn" onclick="copyText('row2', this)">Kopyala</button>
+        </div>
+
+        <div class="result-row">
+            <div class="result-content" id="row3"></div>
+            <button class="copy-btn" onclick="copyText('row3', this)">Kopyala</button>
+        </div>
+    </div>
+
+    <button class="download-footer-btn" onclick="downloadThisFile()">Sayfayı Çevrimdışı Kullanmak İçin İndir</button>
+
+    <div class="footer">
+        Atila YEĞİTEK Özel Paneli &copy; 2024
+    </div>
+</div>
+
+<script>
+const data = {
+    "ANAMUR": [
+        {code: "264499", name: "Anamur Anadolu Lisesi"},
+        {code: "750857", name: "Anamur Cumhuriyet Anadolu Lisesi"},
+        {code: "758234", name: "Şehit İbrahim Armut Fen Lisesi"},
+        {code: "764926", name: "Anamur Şehit Yüksel Alçın Anadolu İmam Hatip Lisesi"},
+        {code: "156923", name: "Anamur Halk Eğitimi Merkezi"},
+        {code: "214052", name: "Rüştü Kazım Yücelen Mesleki Eğitim Merkezi"},
+        {code: "966349", name: "Anamur Rehberlik ve Araştırma Merkezi"},
+        {code: "766166", name: "Anamur Bilim ve Sanat Merkezi"},
+        {code: "954384", name: "Anamur İsmihan Çerçi Anaokulu"},
+        {code: "975011", name: "Akdeniz İlkokulu"},
+        {code: "763105", name: "Anamur Kıbrıs İlkokulu"},
+        {code: "762360", name: "Anamur 15 Temmuz Milli İrade İlkokulu"},
+        {code: "700566", name: "Anıtlı Alanoba İlkokulu"},
+        {code: "700572", name: "Bozdoğan Mamure İlkokulu"},
+        {code: "700832", name: "Çarıklar Efeler İlkokulu"},
+        {code: "700823", name: "Çeltikçi İlkokulu"},
+        {code: "720951", name: "Demirören Alan İlkokulu"},
+        {code: "700584", name: "Evciler Nihat Sarı İlkokulu"},
+        {code: "974989", name: "Fatih İlkokulu"},
+        {code: "975005", name: "Gercebahşiş Yenimahalle İlkokulu"},
+        {code: "975000", name: "Güneybahşiş İlkokulu"},
+        {code: "700815", name: "Güngören İlkokulu"},
+        {code: "700868", name: "Kalınören İlkokulu"},
+        {code: "700728", name: "Karalarbahşiş İlkokulu"},
+        {code: "700799", name: "Köprübaşı İlkokulu"},
+        {code: "700589", name: "Malaklar İlkokulu"},
+        {code: "700841", name: "Ortaköy Hidayet Sinanoğlu İlkokulu"},
+        {code: "700576", name: "Ovabaşı İlkokulu"},
+        {code: "700376", name: "Rüştü Kazım Yücelen İlkokulu"},
+        {code: "772751", name: "Sugözü İlkokulu"},
+        {code: "765625", name: "Şehit Hasan Kuş İlkokulu"},
+        {code: "974978", name: "Şükrü Köymen İlkokulu"},
+        {code: "752517", name: "Zehra Marulyalı İlkokulu"},
+        {code: "974980", name: "Anamur Ortaokulu"},
+        {code: "700564", name: "Anıtlı Alanoba Ortaokulu"},
+        {code: "700568", name: "Bozdoğan Mamure Ortaokulu"},
+        {code: "700820", name: "Çeltikçi Ortaokulu"},
+        {code: "700816", name: "Demirören Alan Ortaokulu"},
+        {code: "700578", name: "Evciler Nihat Sarı Ortaokulu"},
+        {code: "700590", name: "Gercebahşiş Sadet Tuna Ortaokulu"},
+        {code: "700801", name: "Güngören Ortaokulu"},
+        {code: "700864", name: "Kalınören Ortaokulu"},
+        {code: "700597", name: "Karalarbahşiş Ortaokulu"},
+        {code: "700797", name: "Köprübaşı Ortaokulu"},
+        {code: "700586", name: "Malaklar Ortaokulu"},
+        {code: "700837", name: "Ortaköy Hidayet Sinanoğlu Ortaokulu"},
+        {code: "700574", name: "Ovabaşı Ortaokulu"},
+        {code: "700396", name: "Rüştü Kazım Yücelen Ortaokulu"},
+        {code: "765636", name: "Şehit Şükrü Ünlü Ortaokulu"},
+        {code: "974988", name: "Vakıfbank Atatürk Ortaokulu"},
+        {code: "974986", name: "Cengiz Topel İmam Hatip Ortaokulu"},
+        {code: "748386", name: "Zehra Marulyalı Yatılı Bölge Ortaokulu"},
+        {code: "963203", name: "Abdulkadir Perşembe Vakfı Mesleki ve Teknik Anadolu Lisesi"},
+        {code: "156888", name: "Anamur Ticaret Mesleki ve Teknik Anadolu Lisesi"},
+        {code: "156864", name: "Gazi Mesleki ve Teknik Anadolu Lisesi"},
+        {code: "340376", name: "Valide Sultan Kız Mesleki ve Teknik Anadolu Lisesi"}
+    ],
+    "BOZYAZI": [
+        {code: "323504", name: "Bozyazı Anadolu Lisesi"},
+        {code: "751337", name: "Bozyazı Durmuş Tufan Anadolu İmam Hatip Lisesi"},
+        {code: "214279", name: "Bozyazı Halk Eğitimi Merkezi"},
+        {code: "971705", name: "Bozyazı İlk Adım Anaokulu"},
+        {code: "772758", name: "Kökobası Anaokulu"},
+        {code: "743634", name: "Beyreli İlkokulu"},
+        {code: "708242", name: "Bozyazı İlkokulu"},
+        {code: "721261", name: "Cumhuriyet İlkokulu"},
+        {code: "853265", name: "Çopurlu İlkokulu"},
+        {code: "708538", name: "Hüseyin Hüsnü Tekışık İlkokulu"},
+        {code: "737923", name: "Kaledibi Şehit Turhan Kılıç İlkokulu"},
+        {code: "708531", name: "Kökobası İlkokulu"},
+        {code: "721274", name: "Kötekler İlkokulu"},
+        {code: "708713", name: "Lütfiye Keskin İlkokulu"},
+        {code: "708706", name: "Tekeli İlkokulu"},
+        {code: "713685", name: "Tekmen İlkokulu"},
+        {code: "713669", name: "Vali Çetin Birmek İlkokulu"},
+        {code: "724230", name: "100. Yıl Örtülü İlkokulu"},
+        {code: "708429", name: "Atatürk Ortaokulu"},
+        {code: "708437", name: "Bozyazı Ortaokulu"},
+        {code: "708700", name: "Gazi Ortaokulu"},
+        {code: "708525", name: "Kökobası Ortaokulu"},
+        {code: "708710", name: "Lütfiye Keskin Ortaokulu"},
+        {code: "708416", name: "Şehit Murat Namdar Ortaokulu"},
+        {code: "713661", name: "Şehit Sedat Yabalak Ortaokulu"},
+        {code: "708702", name: "Tekeli Ortaokulu"},
+        {code: "713680", name: "Tekmen Ortaokulu"},
+        {code: "763592", name: "Bozyazı Mesleki ve Teknik Anadolu Lisesi"},
+        {code: "751442", name: "Bozyazı 15 Temmuz Millî İrade Mesleki ve Teknik Anadolu Lisesi"}
+    ]
+};
+
+function updateSchools() {
+    const district = document.getElementById('districtSelect').value;
+    const schoolSelect = document.getElementById('schoolSelect');
+    const resultCard = document.getElementById('resultCard');
+    
+    schoolSelect.innerHTML = '<option value="">Kurum Seçiniz...</option>';
+    resultCard.style.display = 'none';
+
+    if(district && data[district]) {
+        schoolSelect.disabled = false;
+        data[district].forEach(school => {
+            let opt = document.createElement('option');
+            opt.value = school.code;
+            opt.textContent = school.name;
+            schoolSelect.appendChild(opt);
+        });
+    } else {
+        schoolSelect.disabled = true;
+    }
+}
+
+function showDetails() {
+    const district = document.getElementById('districtSelect').value;
+    const schoolCode = document.getElementById('schoolSelect').value;
+    const resultCard = document.getElementById('resultCard');
+
+    if(schoolCode) {
+        const school = data[district].find(s => s.code === schoolCode);
+        document.getElementById('row1').textContent = "Kurum Kodu: " + school.code;
+        document.getElementById('row2').textContent = "Kurum Adı: " + school.name;
+        document.getElementById('row3').textContent = school.code + " " + school.name;
+        resultCard.style.display = 'block';
+    } else {
+        resultCard.style.display = 'none';
+    }
+}
+
+function copyText(elementId, btn) {
+    const text = document.getElementById(elementId).textContent;
+    const dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+
+    // Geri bildirim
+    const originalText = btn.textContent;
+    btn.textContent = "Kopyalandı!";
+    btn.classList.add('copied');
+    setTimeout(() => {
+        btn.textContent = originalText;
+        btn.classList.remove('copied');
+    }, 1500);
+}
+
+function downloadThisFile() {
+    const content = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+    const blob = new Blob([content], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'kurum_bilgi_paneli.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+</script>
+
+</body>
+</html>
