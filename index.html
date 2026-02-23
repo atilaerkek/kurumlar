@@ -243,14 +243,7 @@
                 { id: "963203", ad: "Abdulkadir Perşembe Vakfı Mesleki ve Teknik Anadolu Lisesi" },
                 { id: "156888", ad: "Anamur Ticaret Mesleki ve Teknik Anadolu Lisesi" },
                 { id: "156864", ad: "Gazi Mesleki ve Teknik Anadolu Lisesi" },
-                { id: "340376", ad: "Valide Sultan Kız Mesleki ve Teknik Anadolu Lisesi" },
-                { id: "974979", ad: "Anamur İlkokulu" },
-                { id: "714088", ad: "Güngören Ortaokulu" },
-                { id: "714087", ad: "Kalınören Ortaokulu" },
-                { id: "761662", ad: "Anamur Özel Eğitim Anaokulu" },
-                { id: "764951", ad: "Anamur Özel Eğitim Uygulama Okulu I. Kademe" },
-                { id: "764952", ad: "Anamur Özel Eğitim Uygulama Okulu II. Kademe" },
-                { id: "764953", ad: "Anamur Özel Eğitim Uygulama Okulu III. Kademe" }
+                { id: "340376", ad: "Valide Sultan Kız Mesleki ve Teknik Anadolu Lisesi" }
             ],
             bozyazi: [
                 { id: "323504", ad: "Bozyazı Anadolu Lisesi" },
@@ -295,6 +288,7 @@
             sonucPaneli.style.display = "none";
 
             if (secilenIlce && okulVerileri[secilenIlce]) {
+                // Alfabetik sıralama (Türkçe karakter duyarlı)
                 const siraliOkullar = [...okulVerileri[secilenIlce]].sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
                 
                 siraliOkullar.forEach(okul => {
